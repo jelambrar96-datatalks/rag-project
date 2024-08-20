@@ -1,0 +1,159 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: rager/data_loaders/reading_documents.py
+  downstream_blocks:
+  - question_2
+  - chunking
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: reading_documents
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: reading_documents
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_path: rager/data_loaders/question_2.py
+    file_source:
+      path: rager/data_loaders/question_2.py
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: question_2
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks:
+  - reading_documents
+  uuid: question_2
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: rager/data_loaders/chunking.py
+  downstream_blocks:
+  - question_3
+  - tokenizacion_embedding
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: chunking
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks:
+  - reading_documents
+  uuid: chunking
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: rager/data_loaders/question_3.py
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: question_3
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks:
+  - chunking
+  uuid: question_3
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: rager/transformers/tokenizacion_embedding.py
+  downstream_blocks:
+  - export_elasticsearch
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: tokenizacion_embedding
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - chunking
+  uuid: tokenizacion_embedding
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: rager/data_exporters/export_elasticsearch.py
+  downstream_blocks:
+  - retrieval
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: export_elasticsearch
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - tokenizacion_embedding
+  uuid: export_elasticsearch
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: rager/data_loaders/retrieval.py
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: retrieval
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks:
+  - export_elasticsearch
+  uuid: retrieval
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2024-08-20 06:01:26.115300+00:00'
+data_integration: null
+description: null
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: rag-llmzoomcamp
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags: []
+type: python
+uuid: rag_llmzoomcamp
+variables:
+  index_name: documents_20240820_3746_20240820_4147_20240820_4346
+variables_dir: /home/src/mage_data/rager
+widgets: []
